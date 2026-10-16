@@ -339,6 +339,23 @@ i.a{background:var(--amber)}i.g{background:var(--green)}i.r{background:var(--red
 .lsvg .ld{stroke:var(--surface);stroke-width:2}
 .yb small.dn{font-weight:500;font-size:10px;margin-top:-3px;white-space:nowrap}
 .lsvg .lt2{font-size:9.5px}
+.qbox{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);border-radius:16px;padding:6px 16px;background:var(--surface)}
+.qbox:focus-within{border-color:var(--forest)}
+.qin{flex:1;min-width:0;border:0;outline:0;background:none;font-size:30px;font-weight:700;padding:6px 0;color:var(--ink)}
+.qfix{font-size:20px;font-weight:700;color:var(--muted)}
+.qfix:empty{display:none}
+.presets{grid-template-columns:repeat(4,1fr)!important}
+.catpick{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:10px 14px;border:1px solid var(--line);border-radius:16px;background:var(--surface-2)}
+.ico-tile.sm{width:38px;height:38px;border-radius:11px}
+.chipsel{display:flex;flex-wrap:wrap;gap:8px}
+.chipsel button{padding:8px 14px;border-radius:999px;border:1px solid var(--line);font-weight:600;font-size:14px;background:var(--surface);color:var(--ink)}
+.chipsel button[aria-pressed=true]{background:var(--forest);color:var(--forest-ink);border-color:transparent}
+.catgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ctile{display:flex;flex-direction:column;align-items:center;gap:6px;padding:12px 4px 10px;border:1px solid var(--line);border-radius:16px;background:var(--surface);font-size:12px;font-weight:700;line-height:1.2;text-align:center;color:var(--ink);min-width:0}
+.ctile:active{transform:scale(.97)}
+.ctico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,currentColor 12%,transparent)}
+.ctile>span:last-child{overflow-wrap:normal;hyphens:manual}
+@media (max-width:340px){.catgrid{grid-template-columns:repeat(3,1fr)}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 </style>
 
@@ -405,6 +422,13 @@ const P={
  pulse:'<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
  flame:'<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.4-.5-2-1-3-1.1-2.1-.2-4 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.2.4-2.3 1-3.3.3 1.6 1.4 2.8 2.5 2.8z"/>',
  bag:'<path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4zM3 6h18M16 10a4 4 0 0 1-8 0"/>',
+ food:'<path d="M3 2v7c0 1.1.9 2 2 2h2a2 2 0 0 0 2-2V2M6 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
+ cart:'<circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2 2h3l2.7 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>',
+ bus:'<path d="M8 6v6M15 6v6M2 12h19.6M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3"/><circle cx="7" cy="18" r="2"/><path d="M9 18h5"/><circle cx="16" cy="18" r="2"/>',
+ ticket:'<path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2zM13 5v2M13 17v2M13 11v2"/>',
+ scissors:'<circle cx="6" cy="6" r="3"/><path d="M8.1 8.1 12 12M20 4 8.1 15.9"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/>',
+ gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C9.5 3 12 8 12 8s2.5-5 4.5-5a2.5 2.5 0 0 1 0 5"/>',
+ plane:'<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
  drop:'<path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5S5 13 5 15a7 7 0 0 0 7 7z"/>'
 };
 const I=(n,cls='i')=>`<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true">${P[n]||''}</svg>`;
@@ -743,7 +767,7 @@ function billRow(it){
   if(t==='card'){const c=it.card||{};sub=[prov,c.limit?`${Math.round((+c.balance||0)/c.limit*100)}% of limit used`:''].filter(Boolean).join(' · ')}
   return `<button class="ob tap" data-act="item" data-id="${it.id}"><span class="ico-tile">${I(kIcon(it.kind))}</span><span class="obt"><b>${esc(it.name)}</b><span>${sub}</span></span><span class="endcol"><span class="amtc num">${rm(t==='card'?(it.card||{}).balance:it.amount)}</span>${st?`<span class="pill sm ${st.tone}">${st.text}</span>`:'<span class="pill sm green">Done</span>'}</span></button>`;
 }
-function spRow(e){return `<button class="ob tap" data-act="${e.own?'editSpend':'vopen'}" data-id="${e.id}" data-vid="${e.vid||''}" data-to="${e.to||''}"><span class="dotc lg" style="--c:var(--${catTone(e.cat)})"></span><span class="obt"><b>${esc(e.note||e.cat)}</b><span>${esc(e.cat)}${e.own?(e.method?' · '+esc(e.method):''):' · from Vehicles'}</span></span><span class="amtc num">${rm(e.amount)}</span></button>`}
+function spRow(e){return `<button class="ob tap" data-act="${e.own?'editSpend':'vopen'}" data-id="${e.id}" data-vid="${e.vid||''}" data-to="${e.to||''}"><span class="ico-tile sm" style="color:var(--${catTone(e.cat)})">${I(spIcon(e.cat))}</span><span class="obt"><b>${esc(e.note||e.sub||e.cat)}</b><span>${esc(e.cat)}${e.sub&&e.note?' · '+esc(e.sub):''}${e.own?(e.method?' · '+esc(e.method):''):' · from Vehicles'}</span></span><span class="amtc num">${rm(e.amount)}</span></button>`}
 function vSpend(){
   const ym=S.month;const list=spendFor(ym);const total=list.reduce((a,e)=>a+e.amount,0);
   const prev=spendFor(shiftYM(ym,-1)).reduce((a,e)=>a+e.amount,0);
@@ -1144,16 +1168,53 @@ function savePay(id,d){
   if(kT(it.kind)==='card'){it.card.balance=Math.max(0,Math.round(((+it.card.balance||0)-amount)*100)/100)}
   closeSheet();touchItem(it);toast('Payment saved');
 }
+const SPEND_CFG={
+ 'Food & drinks':{icon:'food',sub:'Meals, coffee, delivery',type:['Meal',['Breakfast','Lunch','Dinner','Snack / drinks','Delivery']],note:['Where / what','Nasi lemak at mamak']},
+ 'Groceries':{icon:'cart',sub:'Supermarket, wet market',note:['Store',"Lotus's, Jaya Grocer"]},
+ 'Transport':{icon:'bus',sub:'Grab, toll, parking, LRT',type:['Type',['Grab / taxi','Toll','Parking',"Touch 'n Go reload",'LRT / MRT / bus','Other']],note:['Note','Office to KLCC']},
+ 'Shopping':{icon:'bag',sub:'Online and in-store',type:['Bought',['Online','In-store']],note:['Store / item','Shopee, Uniqlo']},
+ 'Health':{icon:'cross',sub:'Clinic, pharmacy, dental',type:['Type',['Clinic','Pharmacy','Dental','Hospital','Optical','Other']],note:['Clinic / pharmacy','Klinik Mediviron']},
+ 'Entertainment':{icon:'ticket',sub:'Movies, events, games',note:['What','Cinema, concert']},
+ 'Family':{icon:'user',sub:'Kids, parents, home',note:['For','Kids, parents']},
+ 'Education':{icon:'grad',sub:'Books, courses, tuition',type:['Type',['Books','Course','School fees','Tuition','Other']],note:['Note','']},
+ 'Personal care':{icon:'scissors',sub:'Haircut, salon, skincare',note:['Where','Haircut']},
+ 'Gifts & donations':{icon:'gift',sub:'Gifts, duit raya, donations',type:['Type',['Gift','Donation','Duit raya / angpau','Wedding / kenduri','Sadaqah']],note:['For / to','']},
+ 'Travel':{icon:'plane',sub:'Flights, hotels, trips',type:['Type',['Flight','Hotel','Food','Activities','Transport','Other']],note:['Trip','Langkawi trip']},
+ 'Others':{icon:'receipt',sub:'Anything else',note:['Note','']}
+};
+const catTile=(act,c,ic,label)=>`<button class="ctile" data-act="${act}" data-c="${esc(c)}"><span class="ctico" style="color:var(--${catTone(c)})">${I(ic)}</span><span>${esc(label).replace('Entertainment','Entertain&shy;ment')}</span></button>`;
+const spIcon=c=>c==='Fuel'?'fuel':c==='Car service'?'wrench':(SPEND_CFG[c]||SPEND_CFG.Others).icon;
 function spendSheet(e,preset){
-  const isNew=!e;e=e||{date:preset||today(),cat:'Food & drinks',method:'eWallet',amount:'',note:''};
-  openSheet(isNew?'Add spending':'Edit spending',`
+  S.spendDraft={e:e||null,preset:preset||''};
+  if(e){spendForm(e.cat,e);return}
+  openSheet('Add spending',`<div class="catgrid">${SPEND_CATS.map(([c])=>catTile('spendCat',c,SPEND_CFG[c].icon,c)).join('')}</div>
+   <div class="label">Vehicle</div><div class="catgrid">${catTile('spendFuel','Fuel','fuel','Fuel')}${catTile('spendSvc','Car service','wrench','Car service')}</div>`);
+}
+function spendForm(cat,e){
+  const d=S.spendDraft||{};const isNew=!e;const cfg=SPEND_CFG[cat]||SPEND_CFG.Others;
+  e=e||{date:d.preset||today(),cat,method:'eWallet',amount:'',note:'',sub:''};
+  const t=cfg.type;
+  openSheet(`${isNew?'Add':'Edit'} ${esc(cat.toLowerCase())}`,`
+   <button class="catpick" data-act="spendBack"><span class="ico-tile" style="color:var(--${catTone(cat)})">${I(cfg.icon)}</span><span class="obt"><b>${esc(cat)}</b><span>Change category</span></span>${I('chev')}</button>
+   <input type="hidden" id="s_cat" value="${esc(cat)}">
    <label class="fld"><span>Amount (RM)</span><input class="in mono" id="s_amt" inputmode="decimal" value="${esc(e.amount)}" placeholder="0.00" style="font-size:26px;font-weight:700"></label>
-   <div class="f2"><label class="fld"><span>Category</span><select class="in" id="s_cat">${SPEND_CATS.map(([c])=>`<option ${c===e.cat?'selected':''}>${c}</option>`).join('')}</select></label>
-   <label class="fld"><span>Paid with</span><select class="in" id="s_meth">${['eWallet','Card','Cash','Online transfer'].map(m=>`<option ${m===e.method?'selected':''}>${m}</option>`).join('')}</select></label></div>
-   <div class="f2"><label class="fld"><span>Date</span><input class="in" type="date" id="s_date" value="${esc(e.date)}"></label>
-   <label class="fld"><span>Note <em>· optional</em></span><input class="in" id="s_note" value="${esc(e.note)}" placeholder="Nasi lemak"></label></div>
+   ${t?`<div class="fld"><span>${t[0]}</span><div class="chipsel" id="s_subs">${t[1].map(o=>`<button type="button" data-v="${esc(o)}" aria-pressed="${e.sub===o}">${esc(o)}</button>`).join('')}</div></div>`:''}
+   <label class="fld"><span>${cfg.note[0]} <em>· optional</em></span><input class="in" id="s_note" value="${esc(e.note)}" ${cfg.note[1]?`placeholder="${esc(cfg.note[1])}"`:''}></label>
+   <div class="f2"><label class="fld"><span>Paid with</span><select class="in" id="s_meth">${['eWallet','Card','Cash','Online transfer'].map(m=>`<option ${m===e.method?'selected':''}>${m}</option>`).join('')}</select></label>
+   <label class="fld"><span>Date</span><input class="in" type="date" id="s_date" value="${esc(e.date)}"></label></div>
    ${isNew?'':`<button class="btn ghost" data-act="delSpend" data-id="${e.id}">${I('trash')}Delete</button>`}`,
-   `<button class="btn block" data-act="saveSpend" data-id="${e.id||''}">Save</button>`);
+   `<button class="btn block" data-act="saveSpend" data-id="${e.id||''}">Save</button>`,
+   s=>{const g=s.querySelector('#s_subs');if(g)g.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b)return;const on=b.getAttribute('aria-pressed')!=='true';g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b&&on))});
+     if(isNew)setTimeout(()=>{const a=s.querySelector('#s_amt');if(a)a.focus()},250)});
+}
+function spendVehicle(kind){
+  if(!S.vehicles.length){closeSheet();toast('Add your vehicle in Assets first');return}
+  const go=vid=>{S.settings.currentId=vid;const pre=(S.spendDraft||{}).preset;
+    if(kind==='fuel'){fuelForm();if(pre&&pre!==today()){const x=document.getElementById('f_fdate');if(x)x.value=pre+'T12:00'}}
+    else{visitForm();if(pre){const x=document.getElementById('f_date');if(x)x.value=pre}}};
+  if(S.vehicles.length===1){go(S.vehicles[0].id);return}
+  openSheet(kind==='fuel'?'Fuel for which vehicle?':'Service for which vehicle?',`<div class="card obs">${S.vehicles.map(x=>`<button class="ob tap" data-act="spendVeh" data-k="${kind}" data-vid="${x.id}"><span class="ico-tile">${I(x.type==='moto'?'moto':'car')}</span><span class="obt"><b>${vName(x)}</b><span>${esc(x.plate)}</span></span>${I('chev')}</button>`).join('')}</div>`);
+  S.spendVehGo=go;
 }
 function findSpend(id){for(const [m,arr] of Object.entries(S.spend)){const e=arr.find(x=>x.id===id);if(e)return [m,e]}return [null,null]}
 function saveSpend(id){
@@ -1161,7 +1222,7 @@ function saveSpend(id){
   const date=val('s_date')||today();const m=date.slice(0,7);
   let [om,e]=findSpend(id);
   if(e){S.spend[om]=S.spend[om].filter(x=>x.id!==id);persistSpend(om)}else e={id:uid()};
-  Object.assign(e,{amount,date,cat:val('s_cat'),method:val('s_meth'),note:val('s_note')});
+  const sb=document.querySelector('#s_subs [aria-pressed=true]');Object.assign(e,{amount,date,cat:val('s_cat'),sub:sb?sb.dataset.v:'',method:val('s_meth'),note:val('s_note')});
   (S.spend[m]=S.spend[m]||[]).push(e);commitExample();persistSpend(m);closeSheet();S.month=m;render();toast('Saved');
 }
 
@@ -1496,8 +1557,8 @@ function fuelForm(f,prefill){
    <label class="fld"><span>Odometer (km) <em>· optional</em></span><input class="in mono" id="f_fodo" inputmode="numeric" value="${esc(f.odo)}" placeholder="Current: ${km(v.mileage)}"></label></div>
    <label class="fld"><span>Station <em>· optional</em></span><input class="in" id="f_st" value="${esc(f.station)}" placeholder="Petronas Lebuh Puteri"></label>
    <div class="fld"><span>Fill quantity</span><div class="seg" id="mode"><button type="button" data-m="litre" aria-pressed="true">By Litre</button><button type="button" data-m="amount" aria-pressed="false">By Amount</button></div></div>
-   <div class="row" style="justify-content:space-between"><b class="num" id="qty" style="font-size:28px"></b><span class="muted num" id="approx"></span></div>
-   <div class="box"><input type="range" id="rng" aria-label="Fill quantity"></div>
+   <div class="qbox"><span class="qfix" id="qpre"></span><input class="qin num" id="qin" inputmode="decimal" autocomplete="off" placeholder="0"><span class="qfix" id="qunit">L</span></div>
+   <div class="note num" id="approx" style="margin-top:-6px"></div>
    <div class="presets" id="pre"></div>
    <div class="fld"><span>Fuel grade</span><div class="grades" id="gr">${[['RON95','ron95'],['RON97','ron97'],['Diesel','diesel']].map(([n,k])=>`<button type="button" data-g="${n==='Diesel'?'DIESEL':n}" aria-pressed="${st.grade===(n==='Diesel'?'DIESEL':n)}">${n}<small>${rmT(pr[k].full)}</small></button>`).join('')}</div></div>
    <div class="box row" id="budiBox"><span style="flex:1"><b>Use government BUDI price</b><span class="note" style="display:block">Price per litre set to the subsidised rate.</span></span><button type="button" class="toggle" id="tg" role="switch" aria-checked="${st.budi}" aria-label="Use BUDI price"></button></div>
@@ -1505,24 +1566,23 @@ function fuelForm(f,prefill){
    ${isNew?'':`<button class="btn ghost" data-act="delFuel" data-id="${f.id}">${I('trash')}Delete fill-up</button>`}`,
    `<button class="btn block" data-act="saveFuel" data-id="${f.id||''}">Save</button>`,
    s=>{
-     const rng=s.querySelector('#rng');
-     const sync=()=>{
-       const u=unit();const hasBudi=!!pr[st.grade.toLowerCase()].budi;s.querySelector('#budiBox').hidden=!hasBudi;if(!hasBudi)st.budi=false;
-       if(st.mode==='litre'){st.amount=+(st.litres*u).toFixed(2);rng.min=1;rng.max=70;rng.step=.1;rng.value=st.litres;s.querySelector('#qty').textContent=st.litres.toFixed(1)+' L';s.querySelector('#approx').textContent='≈ '+rmT(st.amount)}
-       else{st.litres=+(st.amount/u).toFixed(2);rng.min=5;rng.max=300;rng.step=1;rng.value=st.amount;s.querySelector('#qty').textContent=rmT(st.amount);s.querySelector('#approx').textContent='≈ '+st.litres.toFixed(2)+' L'}
-       let pe=s.querySelector('#pre');if(pe.tagName==='LABEL'){pe.outerHTML='<div class="presets" id="pre"></div>'}
-       const pres=st.mode==='litre'?[5,10,20,40]:[20,50,100,150];
-       s.querySelector('#pre').innerHTML=pres.map(p=>`<button type="button" data-p="${p}" aria-pressed="${(st.mode==='litre'?st.litres:st.amount)==p}">${st.mode==='litre'?p+'L':'RM'+p}</button>`).join('')+`<button type="button" data-p="other" aria-pressed="false">Other</button>`;
-       s.querySelector('#ppl').textContent=rmT(u);s.querySelector('#tc').textContent=rmT(st.amount);s.querySelector('#tg').setAttribute('aria-checked',st.budi);
-     };
-     rng.addEventListener('input',()=>{if(st.mode==='litre')st.litres=+rng.value;else st.amount=+rng.value;sync()});
-     s.querySelector('#mode').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.mode=b.dataset.m;s.querySelectorAll('#mode button').forEach(x=>x.setAttribute('aria-pressed',x===b));sync()});
-     s.querySelector('.sb').addEventListener('click',e=>{const b=e.target.closest('#pre button');if(!b)return;if(b.dataset.p==='other'){s.querySelector('#pre').outerHTML=`<label class="fld" id="pre"><span>${st.mode==='litre'?'Litres':'Amount (RM)'}</span><input class="in mono" inputmode="decimal" id="exact" value="${st.mode==='litre'?st.litres:st.amount}"></label>`;const ex=s.querySelector('#exact');ex.focus();ex.addEventListener('input',()=>{const n=+ex.value||0;if(st.mode==='litre')st.litres=n;else st.amount=n;sync2()});return}if(st.mode==='litre')st.litres=+b.dataset.p;else st.amount=+b.dataset.p;sync()});
-     const sync2=()=>{const u=unit();if(st.mode==='litre'){st.amount=+(st.litres*u).toFixed(2);s.querySelector('#qty').textContent=st.litres.toFixed(1)+' L';s.querySelector('#approx').textContent='≈ '+rmT(st.amount)}else{st.litres=+(st.amount/u).toFixed(2);s.querySelector('#qty').textContent=rmT(st.amount);s.querySelector('#approx').textContent='≈ '+st.litres.toFixed(2)+' L'}s.querySelector('#tc').textContent=rmT(st.amount)};
-     s.querySelector('#gr').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.grade=b.dataset.g;if(pr[st.grade.toLowerCase()].budi)st.budi=true;s.querySelectorAll('#gr button').forEach(x=>x.setAttribute('aria-pressed',x===b));s.querySelector('#pre')&&s.querySelector('#pre').tagName==='LABEL'?sync2():sync()});
-     s.querySelector('#tg').addEventListener('click',()=>{st.budi=!st.budi;s.querySelector('#tg').setAttribute('aria-checked',st.budi);s.querySelector('#ppl').textContent=rmT(unit());s.querySelector('#pre').tagName==='LABEL'?sync2():sync()});
+     const qin=s.querySelector('#qin');
+     const calc=()=>{const u=unit();if(st.mode==='litre')st.amount=+(st.litres*u).toFixed(2);else st.litres=u?+(st.amount/u).toFixed(2):0;
+       s.querySelector('#approx').textContent=st.mode==='litre'?(st.litres?'≈ '+rmT(st.amount):''):(st.amount?'≈ '+st.litres.toFixed(2)+' L':'');
+       s.querySelector('#ppl').textContent=rmT(u);s.querySelector('#tc').textContent=rmT(st.amount);
+       s.querySelectorAll('#pre button').forEach(x=>x.setAttribute('aria-pressed',+x.dataset.p===(st.mode==='litre'?st.litres:st.amount)))};
+     const draw=()=>{const hasBudi=!!pr[st.grade.toLowerCase()].budi;s.querySelector('#budiBox').hidden=!hasBudi;if(!hasBudi)st.budi=false;s.querySelector('#tg').setAttribute('aria-checked',st.budi);
+       const lit=st.mode==='litre';s.querySelector('#qpre').textContent=lit?'':'RM';s.querySelector('#qunit').textContent=lit?'L':'';qin.setAttribute('aria-label',lit?'Litres':'Amount in RM');
+       const v=lit?st.litres:st.amount;qin.value=v?String(+(+v).toFixed(2)):'';
+       s.querySelector('#pre').innerHTML=(lit?[5,10,20,40]:[20,50,100,150]).map(p=>`<button type="button" data-p="${p}">${lit?p+'L':'RM'+p}</button>`).join('');calc()};
+     qin.addEventListener('input',()=>{const n=+qin.value.replace(',','.').replace(/[^0-9.]/g,'')||0;if(st.mode==='litre')st.litres=n;else st.amount=n;calc()});
+     qin.addEventListener('focus',()=>qin.select());
+     s.querySelector('#mode').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.mode=b.dataset.m;s.querySelectorAll('#mode button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw();qin.focus()});
+     s.querySelector('#pre').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;if(st.mode==='litre')st.litres=+b.dataset.p;else st.amount=+b.dataset.p;draw()});
+     s.querySelector('#gr').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;st.grade=b.dataset.g;if(pr[st.grade.toLowerCase()].budi)st.budi=true;s.querySelectorAll('#gr button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+     s.querySelector('#tg').addEventListener('click',()=>{st.budi=!st.budi;draw()});
      if(prefill&&prefill.total){st.mode='amount';st.amount=prefill.total;s.querySelectorAll('#mode button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.m==='amount'))}
-     sync();
+     draw();
      sheetSave=()=>st;
    });
 }
@@ -1660,6 +1720,12 @@ document.addEventListener('click',async e=>{
    case 'hideInstall':S.settings.hideInstall=true;lsSave();render();break;
    case 'mprev':case 'mnext':S.month=shiftYM(S.month,a==='mprev'?-1:1);S.cal.day=S.month===ymNow()?today():S.month+'-01';render();break;
    case 'addSpend':spendSheet();break;
+   case 'spendCat':spendForm(b.dataset.c,(S.spendDraft||{}).e);break;
+   case 'spendBack':{const d=S.spendDraft||{};const e=d.e;
+     if(e)openSheet('Change category',`<div class="catgrid">${SPEND_CATS.map(([c])=>catTile('spendCat',c,SPEND_CFG[c].icon,c)).join('')}</div>`);else spendSheet(null,d.preset);break}
+   case 'spendFuel':spendVehicle('fuel');break;
+   case 'spendSvc':spendVehicle('svc');break;
+   case 'spendVeh':S.spendVehGo&&S.spendVehGo(b.dataset.vid);break;
    case 'editSpend':{const [,e]=findSpend(id);if(e)spendSheet(e);break}
    case 'saveSpend':saveSpend(id);break;
    case 'delSpend':if(b.dataset.armed){const [m]=findSpend(id);S.spend[m]=S.spend[m].filter(x=>x.id!==id);commitExample();persistSpend(m);closeSheet();render();toast('Deleted')}else{b.dataset.armed=1;b.classList.add('danger');b.innerHTML=I('trash')+'Tap again to delete'}break;

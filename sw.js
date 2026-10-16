@@ -1,5 +1,5 @@
 // Kikirara offline cache. Bump VERSION when you upload a new index.html.
-const VERSION = 'kikirara-v4';
+const VERSION = 'kikirara-v7';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'logo.svg', 'icon-180.png', 'icon-192.png', 'icon-512.png'];
 
 self.addEventListener('install', e => {
